@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>τριφατσο - Cafe Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --beige: #E8DCC4;
+            --grey: #6B6B6B;
+            --dark-grey: #4A4A4A;
+            --light-grey: #D3D3D3;
+            --orange: #D4876F;
+            --light-red: #C17F6F;
+            --cream: #F5F0E8;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: var(--dark-grey);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            color: var(--dark-grey);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--grey);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%);
+            padding-top: 80px;
+        }
+
+        .logo-container {
+            max-width: 500px;
+            width: 90%;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+        }
+
+        .hero-text {
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            color: var(--dark-grey);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .hero-text p {
+            font-size: 2rem;
+            color: var(--grey);
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-grey);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--light-red));
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--grey);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            padding: 2rem;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--grey);
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: var(--beige);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--grey);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--white);
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background: var(--cream);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            height: 300px;
+            background: var(--beige);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--grey);
+            font-style: italic;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--white);
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .contact-info .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 10px;
+            border-left: 4px solid var(--orange);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-item h3 {
+            font-size: 1.3rem;
+            color: var(--dark-grey);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            color: var(--grey);
+        }
+
+        .contact-item a {
+            color: var(--orange);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--light-red);
+        }
+
+        .contact-map {
+            background: var(--beige);
+            border-radius: 10px;
+            padding: 0;
+            height: 100%;
+            min-height: 500px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-grey);
+            color: var(--cream);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-grey);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: white;
+                width: 70%;
+                height: calc(100vh - 70px);
+                padding: 2rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+        }
+
+        .icon {
+            font-size: 1.2rem;
+        }
+
+        /* Social Media Button */
+        .social-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .social-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .social-float a img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-float a:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 30px rgba(188, 24, 136, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">τριφατσο</div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="logo-container">
+            <img src="logo - Copy.jpg" alt="τριφατσο Logo">
+        </div>
+        <div class="hero-text">
+            <p>Three faces ~ One place ~ Pure taste</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Us</h2>
+        <p class="section-subtitle">Discover our story and passion</p>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Story</h3>
+                <p>
+                    τριφατσο is more than just a cafe - it's a celebration of Greek coffee culture blended with 
+                    contemporary flair. Our name, symbolizing three faces, represents the unity of past, present, 
+                    and future in every cup we serve.
+                </p>
+                <p>
+                    We carefully select our beans, prepare each drink with precision, and create an atmosphere 
+                    where friends become family. Whether you're here for a quick espresso or a leisurely afternoon, 
+                    τριφατσο is your home away from home.
+                </p>
+                <p>
+                    Our minimalist approach to design mirrors our philosophy: quality over quantity, 
+                    authenticity over trends, and warmth over formality.
+                </p>
+            </div>
+            <div class="about-image">
+                <!-- Add your cafe photo here -->
+                <img src="trifatso_three_guys.jpg" alt="τριφατσο Cafe">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-subtitle">A glimpse into our world</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="Screenshot 2025-11-19 174938.jpg" alt="τριφατσο Gallery 1">
+            </div>
+            <div class="gallery-item">
+                <img src="Screenshot 2025-11-19 175011.jpg" alt="τριφατσο Gallery 2">
+            </div>
+            <div class="gallery-item">
+                <img src="Screenshot 2025-11-19 175032.jpg" alt="τριφατσο Gallery 3">
+            </div>
+            <div class="gallery-item">
+                <img src="trifatso_three_guys.jpg" alt="τριφατσο Gallery 4">
+            </div>
+            <div class="gallery-item">
+                <!-- Add gallery image 5 -->
+                <span>Gallery Photo 5</span>
+            </div>
+            <div class="gallery-item">
+                <!-- Add gallery image 6 -->
+                <span>Gallery Photo 6</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">We'd love to hear from you</p>
+        
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3><span class="icon">📍</span> Location</h3>
+                    <p>Ευτυχίδου 42<br>Athens, Greece 11634</p>
+                </div>
+                <div class="contact-item">
+                    <h3><span class="icon">📞</span> Phone</h3>
+                    <p><a href="tel:+302107525759">+30 210 752 5759</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3><span class="icon">✉️</span> Email</h3>
+                    <p><a href="mailto:info@trifatso.gr">info@trifatso.gr</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3><span class="icon">🕐</span> Hours</h3>
+                    <p>Every day<br>06:00 - 23:00</p>
+                </div>
+                <div class="contact-item full-width">
+                    <h3><span class="icon"><img src="download.jfif" alt="Instagram" style="width: 24px; height: 24px; border-radius: 4px; vertical-align: middle;"></span> Follow Us</h3>
+                    <p><a href="https://www.instagram.com/trifatso/" target="_blank">@trifatso on Instagram</a></p>
+                </div>
+            </div>
+            <div class="contact-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.1234567890!2d23.7373!3d37.9913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd3f6e5e5e5e%3A0x5e5e5e5e5e5e5e5e!2sEvtychidou%2042%2C%20Athina%20116%2034%2C%20Greece!5e0!3m2!1sen!2sgr!4v1234567890" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; border-radius: 10px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Float Button -->
+    <div class="social-float">
+        <a href="https://www.instagram.com/trifatso/" target="_blank" title="Follow us on Instagram">
+            <img src="download.jfif" alt="Instagram">
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 τριφατσο Cafe. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Smooth scroll with offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

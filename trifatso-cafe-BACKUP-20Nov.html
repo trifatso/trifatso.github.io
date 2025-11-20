@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>τριφατσο - Cafe Shop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --beige: #E8DCC4;
+            --grey: #6B6B6B;
+            --dark-grey: #4A4A4A;
+            --light-grey: #D3D3D3;
+            --orange: #D4876F;
+            --light-red: #C17F6F;
+            --cream: #F5F0E8;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: var(--dark-grey);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            color: var(--dark-grey);
+            font-weight: 400;
+            letter-spacing: 1px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--grey);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%);
+            padding-top: 80px;
+        }
+
+        .logo-container {
+            max-width: 500px;
+            width: 90%;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+        }
+
+        .hero-text {
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            color: var(--dark-grey);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .hero-text p {
+            font-size: 2rem;
+            color: var(--grey);
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-grey);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--light-red));
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--grey);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            padding: 2rem;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--grey);
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: var(--beige);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--grey);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--white);
+        }
+
+        /* Gallery Section */
+        #gallery {
+            background: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            height: 300px;
+            background: var(--light-grey);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--grey);
+            font-style: italic;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            font-weight: 300;
+        }
+
+        .lightbox-close:hover {
+            color: var(--orange);
+        }
+
+        /* Menu Modal */
+        .menu-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(3px);
+            overflow-y: auto;
+            padding: 3rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .menu-modal.active {
+            display: block;
+        }
+
+        .menu-content {
+            background: rgba(74, 74, 74, 0.95);
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 35px;
+            color: var(--light-grey);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 300;
+            line-height: 1;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-close:hover {
+            color: white;
+            background: var(--orange);
+            transform: rotate(90deg);
+        }
+
+        .menu-content h2 {
+            font-size: 3.5rem;
+            color: var(--cream);
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            font-style: italic;
+        }
+
+        .menu-content .menu-subtitle {
+            text-align: center;
+            color: var(--light-grey);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .menu-categories {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .menu-category {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--orange);
+        }
+
+        .menu-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-category h3 {
+            font-size: 2rem;
+            color: var(--dark-grey);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .menu-category h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--orange);
+        }
+
+        .menu-items {
+            list-style: none;
+        }
+
+        .menu-items li {
+            padding: 0.9rem 0;
+            color: var(--grey);
+            font-size: 1.05rem;
+            border-bottom: 1px solid rgba(211, 211, 211, 0.3);
+            transition: all 0.2s ease;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .menu-items li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+            font-weight: bold;
+        }
+
+        .menu-items li:hover {
+            color: var(--dark-grey);
+            padding-left: 2rem;
+        }
+
+        .menu-items li:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu-categories {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .menu-content {
+                padding: 3rem 2rem;
+            }
+            .menu-content h2 {
+                font-size: 2.5rem;
+            }
+            .menu-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--cream);
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .contact-info .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: var(--light-grey);
+            border-radius: 10px;
+            border-left: 4px solid #A0A0A0;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-item h3 {
+            font-size: 1.3rem;
+            color: var(--dark-grey);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            color: var(--grey);
+        }
+
+        .contact-item a {
+            color: #0066CC;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #004499;
+        }
+
+        .contact-map {
+            background: var(--beige);
+            border-radius: 10px;
+            padding: 0;
+            height: 100%;
+            min-height: 500px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-grey);
+            color: var(--cream);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-grey);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: white;
+                width: 70%;
+                height: calc(100vh - 70px);
+                padding: 2rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+        }
+
+        .icon {
+            font-size: 1.2rem;
+        }
+
+        /* Social Media Button */
+        .social-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Reservation Button */
+        .reservation-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+        }
+
+        .reservation-button a {
+            display: inline-block;
+            padding: 0.7rem 1.3rem;
+            background: var(--grey);
+            color: var(--cream);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .reservation-button a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Music Toggle Button */
+        .music-toggle {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            z-index: 999;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .music-toggle.playing {
+            background: var(--orange);
+        }
+
+        .music-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--dark-grey);
+        }
+
+        .music-toggle.playing svg {
+            fill: white;
+        }
+
+        .social-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .social-float a img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-float a:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 30px rgba(188, 24, 136, 0.5);
+        }
+
+        /* Team Section */
+        #team {
+            background: var(--cream);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light-grey);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-member-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            background: var(--beige);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--grey);
+            font-style: italic;
+        }
+
+        .team-member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member h3 {
+            font-size: 1.4rem;
+            color: var(--dark-grey);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Events Modal */
+        .events-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .events-modal.active {
+            display: block;
+        }
+
+        .events-content {
+            background: var(--cream);
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 3rem;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .events-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: var(--dark-grey);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .events-close:hover {
+            color: var(--orange);
+        }
+
+        .events-content h2 {
+            font-size: 3rem;
+            color: var(--dark-grey);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .event-card {
+            background: var(--beige);
+            color: var(--dark-grey);
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+            border-left: 5px solid var(--orange);
+        }
+
+        .event-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            color: var(--dark-grey);
+        }
+
+        .event-card .event-details {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: var(--grey);
+        }
+
+        .event-card .event-description {
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--grey);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">τρίφατσο</div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#" onclick="openEvents(); return false;">Events</a></li>
+            <li><a href="#" onclick="openMenu(); return false;">Menu</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="logo-container">
+            <img src="logo - Copy.jpg" alt="τριφατσο Logo">
+        </div>
+        <div class="hero-text">
+            <p>Three faces | One place | Pure taste</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Us</h2>
+        <p class="section-subtitle">Discover our story and passion</p>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Story</h3>
+                <p>
+                    τριφατσο is more than just a cafe - it's a celebration of coffee culture blended with 
+                    contemporary flair. Our name, symbolizing three faces, represents the unity of past, present, 
+                    and future in every cup we serve.
+                </p>
+                <p>
+                    We carefully select our beans, prepare each drink with precision, and create an atmosphere 
+                    where friends become family. From your morning espresso to afterwork drinks, we're here for 
+                    every moment of your day. Whether you're stopping by for a quick coffee or settling in for 
+                    a leisurely afternoon, τριφατσο is your home away from home.
+                </p>
+                <p>
+                    Our minimalist approach to design mirrors our philosophy: quality over quantity, 
+                    authenticity over trends, and warmth over formality.
+                </p>
+            </div>
+            <div class="about-image">
+                <!-- Add your cafe photo here -->
+                <img src="trifatso_three_guys.jpg" alt="τριφατσο Cafe">
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <h2 class="section-title">Meet the Team</h2>
+        <p class="section-subtitle">The faces behind τρίφατσο</p>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="konstantinos.jpg" alt="Κωνσταντίνος">
+                </div>
+                <h3>Κωνσταντίνος</h3>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="dimitris.jpg" alt="Δημήτρης">
+                </div>
+                <h3>Δημήτρης</h3>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="kokosjpg.jpg" alt="Κώστας">
+                </div>
+                <h3>Κώστας</h3>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="thalasini.jpg" alt="Θαλασσινή">
+                </div>
+                <h3>Θαλασσινή</h3>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <img src="ippokratis.jpg" alt="Ιπποκράτης">
+                </div>
+                <h3>Ιπποκράτης</h3>
+            </div>
+            <div class="team-member">
+                <div class="team-member-photo">
+                    <!-- Add team member photo -->
+                    <span>Photo</span>
+                </div>
+                <h3>Ιούλιος</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-subtitle">A glimpse into our world</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="Screenshot 2025-11-19 174938.jpg" alt="τριφατσο Gallery 1">
+            </div>
+            <div class="gallery-item">
+                <img src="Screenshot 2025-11-19 175011.jpg" alt="τριφατσο Gallery 2">
+            </div>
+            <div class="gallery-item">
+                <img src="Screenshot 2025-11-19 175032.jpg" alt="τριφατσο Gallery 3">
+            </div>
+            <div class="gallery-item">
+                <img src="trifatso_three_guys.jpg" alt="τριφατσο Gallery 4">
+            </div>
+            <div class="gallery-item">
+                <!-- Add gallery image 5 -->
+                <span>Gallery Photo 5</span>
+            </div>
+            <div class="gallery-item">
+                <!-- Add gallery image 6 -->
+                <span>Gallery Photo 6</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">We'd love to hear from you</p>
+        
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3><span class="icon">📍</span> Location</h3>
+                    <p><a href="https://maps.google.com/?q=Ευτυχίδου+42,+Athens,+Greece+11634" target="_blank">Ευτυχίδου 42<br>Athens, Greece 11634</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3><span class="icon">📞</span> Phone</h3>
+                    <p><a href="tel:+302107525759">+30 210 752 5759</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3><span class="icon">✉️</span> Email</h3>
+                    <p><a href="mailto:trifatsoathens@gmail.com">trifatsoathens@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3><span class="icon">🕐</span> Hours</h3>
+                    <p>Every day<br>06:00 - 00:00</p>
+                </div>
+            </div>
+            <div class="contact-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.0!2d23.7487089!3d37.9674834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd386f3d800f%3A0x7fe552e60f14744f!2sTr%C3%ADphatso!5e0!3m2!1sen!2sgr!4v1700000000000!5m2!1sen!2sgr" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; border-radius: 10px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Button -->
+    <div class="reservation-button">
+        <a href="mailto:trifatsoathens@gmail.com?subject=Table Reservation Request">📅 Book a Table</a>
+    </div>
+
+    <!-- Music Toggle Button -->
+    <div class="music-toggle" id="musicToggle" onclick="toggleMusic()" title="Toggle background music">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+    </div>
+    <audio id="backgroundMusic" loop>
+        <source src="cafe-ambiance.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Social Media Float Button -->
+    <div class="social-float">
+        <a href="https://www.facebook.com/profile.php?id=61578121801432&ref=pl_edit_xav_ig_profile_page_web#" target="_blank" title="Follow us on Facebook">
+            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="30" r="30" fill="#1877F2"/>
+                <path d="M33.5 31.5h5.5l1-6.5h-6.5v-4c0-2 0.5-3.5 3-3.5h3.5v-5.5c-0.6-0.1-2.7-0.5-5-0.5-5 0-8.5 3-8.5 8.5v4.5h-5.5v6.5h5.5v17h6.5v-17z" fill="white"/>
+            </svg>
+        </a>
+        <a href="https://www.instagram.com/trifatso/" target="_blank" title="Follow us on Instagram">
+            <img src="download.jpg" alt="Instagram">
+        </a>
+    </div>
+
+    <!-- Events Modal -->
+    <div class="events-modal" id="eventsModal" onclick="closeEvents()">
+        <div class="events-content" onclick="event.stopPropagation()">
+            <span class="events-close" onclick="closeEvents()">&times;</span>
+            <h2>Events at τρίφατσο</h2>
+            
+            <div class="event-card">
+                <h3>EVERY SUNDAY</h3>
+                <div class="event-details">Live DJ & Party Vibes</div>
+                <div class="event-description">
+                    Join us every Sunday for an unforgettable night! Experience the best music, great atmosphere, 
+                    and amazing drinks. Whether you want to dance or just enjoy the vibe, τρίφατσο is the place to be.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Modal -->
+    <div class="menu-modal" id="menuModal" onclick="closeMenu()">
+        <div class="menu-content" onclick="event.stopPropagation()">
+            <span class="menu-close" onclick="closeMenu()">&times;</span>
+            <h2>τρίφατσο Menu</h2>
+            <p class="menu-subtitle">Discover our selection of drinks and snacks</p>
+            
+            <div class="menu-categories">
+                <div class="menu-category">
+                    <h3>Coffee</h3>
+                    <ul class="menu-items">
+                        <li>Espresso</li>
+                        <li>Cappuccino</li>
+                        <li>Latte</li>
+                        <li>Americano</li>
+                        <li>Flat White</li>
+                        <li>Cold Brew</li>
+                    </ul>
+                </div>
+                
+                <div class="menu-category">
+                    <h3>Cocktails</h3>
+                    <ul class="menu-items">
+                        <li>Mojito</li>
+                        <li>Negroni</li>
+                        <li>Aperol Spritz</li>
+                        <li>Espresso Martini</li>
+                        <li>Old Fashioned</li>
+                        <li>Margarita</li>
+                    </ul>
+                </div>
+                
+                <div class="menu-category">
+                    <h3>Wine</h3>
+                    <ul class="menu-items">
+                        <li>Red Wine</li>
+                        <li>White Wine</li>
+                        <li>Rosé</li>
+                        <li>Prosecco</li>
+                        <li>Champagne</li>
+                    </ul>
+                </div>
+                
+                <div class="menu-category">
+                    <h3>Snacks</h3>
+                    <ul class="menu-items">
+                        <li>Bruschetta</li>
+                        <li>Cheese Platter</li>
+                        <li>Olives</li>
+                        <li>Nuts Mix</li>
+                        <li>Tiramisu</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 τριφατσο Cafe. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Smooth scroll with offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Lightbox functionality
+        function openLightbox(imgSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add click event to all gallery images
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.parentElement.addEventListener('click', () => {
+                openLightbox(img.src);
+            });
+        });
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeMenu();
+                closeEvents();
+            }
+        });
+
+        // Menu modal functions
+        function openMenu() {
+            const menuModal = document.getElementById('menuModal');
+            menuModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            const menuModal = document.getElementById('menuModal');
+            menuModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Events modal functions
+        function openEvents() {
+            const eventsModal = document.getElementById('eventsModal');
+            eventsModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEvents() {
+            const eventsModal = document.getElementById('eventsModal');
+            eventsModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Background music toggle
+        let isPlaying = false;
+        const music = document.getElementById('backgroundMusic');
+        const musicToggle = document.getElementById('musicToggle');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicToggle.classList.remove('playing');
+                isPlaying = false;
+            } else {
+                music.play();
+                musicToggle.classList.add('playing');
+                isPlaying = true;
+            }
+        }
+
+        // Set low volume for background music
+        music.volume = 0.3;
+    </script>
+</body>
+</html>
