@@ -1365,10 +1365,17 @@
             line-height: 1.6;
         }
 
-        /* Newsletter Section */
-        .newsletter-container {
-            max-width: 600px;
+        /* Newsletter & Careers Section */
+        .join-us-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
             margin: 2rem auto;
+        }
+
+        .newsletter-container,
+        .careers-container {
             background: var(--white);
             padding: 3rem 2.5rem;
             border-radius: 15px;
@@ -1422,6 +1429,98 @@
         .newsletter-form button:hover {
             background: var(--light-red);
             transform: scale(1.05);
+        }
+
+        /* Join Us Section - Newsletter & Careers side-by-side */
+        .join-us-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .careers-container {
+            background: var(--white);
+            padding: 3rem 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .careers-container h3 {
+            font-size: 2rem;
+            color: var(--dark-grey);
+            margin-bottom: 1rem;
+        }
+
+        .careers-container p {
+            color: var(--grey);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .job-positions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .job-position {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .job-position:hover {
+            background: var(--beige);
+            transform: translateX(5px);
+        }
+
+        .job-position.selected {
+            border-color: var(--orange);
+            background: var(--beige);
+        }
+
+        .job-position h4 {
+            color: var(--orange);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-position p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .careers-container .apply-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--light-grey);
+            color: var(--grey);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .careers-container .apply-btn.active {
+            background: var(--grey);
+            color: white;
+            cursor: pointer;
+            pointer-events: all;
+        }
+
+        .careers-container .apply-btn.active:hover {
+            background: var(--dark-grey);
+            transform: translateY(-2px);
         }
 
         /* Opening Hours Section */
@@ -1798,6 +1897,10 @@
         }
 
         @media (max-width: 768px) {
+            .join-us-grid {
+                grid-template-columns: 1fr;
+            }
+
             .newsletter-form {
                 flex-direction: column;
             }
@@ -2048,20 +2151,20 @@
         <div class="offers-container">
             <div class="offer-card">
                 <span class="offer-badge">HAPPY HOUR</span>
-                <h3>2-for-1 Cocktails</h3>
-                <p>Every weekday from 17:00-19:00<br>Buy one cocktail, get one free!</p>
+                <h3>3-for-2 Cocktails</h3>
+                <p>Every weekday from 17:00-19:00<br>Buy 2 cocktails, get the 3rd FREE! 🍹</p>
             </div>
             
             <div class="offer-card">
-                <span class="offer-badge">STUDENT DEAL</span>
-                <h3>20% Off All Day</h3>
-                <p>Show your student ID<br>Valid Monday-Friday</p>
+                <span class="offer-badge">WEEKEND BRUNCH</span>
+                <h3>Free Coffee Upgrade</h3>
+                <p>Saturday & Sunday 10:00-14:00<br>Order any breakfast, get a FREE specialty coffee upgrade!</p>
             </div>
             
             <div class="offer-card">
-                <span class="offer-badge">BIRTHDAY SPECIAL</span>
-                <h3>Free Dessert</h3>
-                <p>Celebrate your birthday month with us<br>Complimentary dessert with any order</p>
+                <span class="offer-badge">LATE NIGHT</span>
+                <h3>Buy 3, Get 1 Free</h3>
+                <p>After 22:00 on Fridays & Saturdays<br>Any drinks - shots, cocktails, or beers! 🎉</p>
             </div>
         </div>
     </section>
@@ -2078,31 +2181,31 @@
             <ul class="hours-list">
                 <li class="hours-item">
                     <span class="hours-day">Monday</span>
-                    <span class="hours-time">08:00 - 24:00</span>
+                    <span class="hours-time">06:00 - 00:00</span>
                 </li>
                 <li class="hours-item">
                     <span class="hours-day">Tuesday</span>
-                    <span class="hours-time">08:00 - 24:00</span>
+                    <span class="hours-time">06:00 - 00:00</span>
                 </li>
                 <li class="hours-item today">
                     <span class="hours-day">Wednesday (Today)</span>
-                    <span class="hours-time">08:00 - 24:00</span>
+                    <span class="hours-time">06:00 - 00:00</span>
                 </li>
                 <li class="hours-item">
                     <span class="hours-day">Thursday</span>
-                    <span class="hours-time">08:00 - 24:00</span>
+                    <span class="hours-time">06:00 - 00:00</span>
                 </li>
                 <li class="hours-item">
                     <span class="hours-day">Friday</span>
-                    <span class="hours-time">08:00 - 02:00</span>
+                    <span class="hours-time">06:00 - 00:00</span>
                 </li>
                 <li class="hours-item">
                     <span class="hours-day">Saturday</span>
-                    <span class="hours-time">09:00 - 02:00</span>
+                    <span class="hours-time">06:00 - 00:00</span>
                 </li>
                 <li class="hours-item">
                     <span class="hours-day">Sunday</span>
-                    <span class="hours-time">09:00 - 02:00</span>
+                    <span class="hours-time">06:00 - 00:00</span>
                 </li>
             </ul>
         </div>
@@ -2176,7 +2279,6 @@
                     <li>Full bar service with signature cocktails</li>
                     <li>DJ setup & sound system</li>
                     <li>Flexible timing & decorations</li>
-                    <li>Dedicated event coordinator</li>
                 </ul>
                 <div style="margin-top: 2rem;">
                     <a href="mailto:trifatsoathens@gmail.com?subject=Private Event Inquiry" style="display: inline-block; padding: 1rem 2rem; background: var(--grey); color: white; text-decoration: none; border-radius: 50px; font-weight: 600;">
@@ -2258,23 +2360,49 @@
         </div>
     </section>
 
-    <!-- Newsletter Section -->
+    <!-- Newsletter & Careers Section -->
     <section id="newsletter" style="background: var(--white);">
         <h2 class="section-title">Join the τρίφατσο Family</h2>
-        <p class="section-subtitle">Get exclusive updates, offers, and event invites</p>
+        <p class="section-subtitle">Get exclusive updates or become part of our team</p>
         
-        <div class="newsletter-container">
-            <h3>Stay Connected</h3>
-            <p>Be the first to know about new menu items, special events, and exclusive offers delivered straight to your inbox.</p>
-            <form class="newsletter-form" action="https://formsubmit.co/trifatsoathens@gmail.com" method="POST">
-                <input type="hidden" name="_subject" value="Newsletter Subscription - τρίφατσο">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
-            <p style="font-size: 0.9rem; color: var(--grey); margin-top: 1rem;">
-                We respect your privacy. Unsubscribe anytime.
-            </p>
+        <div class="join-us-grid">
+            <!-- Newsletter Box -->
+            <div class="newsletter-container">
+                <h3>Stay Connected</h3>
+                <p>Be the first to know about new menu items, special events, and exclusive offers delivered straight to your inbox.</p>
+                <form class="newsletter-form" action="https://formsubmit.co/trifatsoathens@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Newsletter Subscription - τρίφατσο">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p style="font-size: 0.9rem; color: var(--grey); margin-top: 1rem;">
+                    We respect your privacy. Unsubscribe anytime.
+                </p>
+            </div>
+
+            <!-- Careers Box -->
+            <div class="careers-container">
+                <h3>Join Our Team</h3>
+                <p>Love coffee, cocktails, and creating memorable experiences? We're always looking for passionate people to join us!</p>
+                <div class="job-positions">
+                    <div class="job-position" onclick="selectPosition(this, 'Potion Architect')">
+                        <h4>Potion Architects</h4>
+                        <p>Craft exceptional coffee and cocktails that make people smile</p>
+                    </div>
+                    <div class="job-position" onclick="selectPosition(this, 'Chief of Smiles')">
+                        <h4>Chief of Smiles</h4>
+                        <p>Deliver outstanding service and create a welcoming atmosphere</p>
+                    </div>
+                </div>
+                <p style="font-size: 0.95rem; color: var(--grey); margin: 1.5rem 0 1rem 0;">
+                    👆 Select a position above to apply
+                </p>
+                <a href="javascript:void(0);" id="applyBtn" class="apply-btn" onclick="return false;">Apply Now</a>
+                <p style="font-size: 0.9rem; color: var(--grey); margin-top: 1rem;">
+                    Send your CV and tell us why you'd be perfect!
+                </p>
+            </div>
         </div>
     </section>
 
@@ -2732,6 +2860,26 @@
             if (!wasActive) {
                 faqItem.classList.add('active');
             }
+        }
+
+        // Job Position Selection
+        let selectedPosition = '';
+
+        function selectPosition(element, position) {
+            // Remove selected class from all positions
+            document.querySelectorAll('.job-position').forEach(pos => {
+                pos.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked position
+            element.classList.add('selected');
+            selectedPosition = position;
+            
+            // Enable apply button
+            const applyBtn = document.getElementById('applyBtn');
+            applyBtn.classList.add('active');
+            applyBtn.href = `mailto:trifatsoathens@gmail.com?subject=Job Application - ${position} - τρίφατσο`;
+            applyBtn.onclick = null; // Remove the preventDefault
         }
 
         // Before/After Slider
